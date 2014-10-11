@@ -109,8 +109,8 @@ class coapTransmitter(threading.Thread):
         self.endLock         = threading.Lock()  # released when done communicating
         self.stateLock       = threading.RLock() # busy setting or getting FSM state
         self.rxMsgEvent      = threading.Event()
-        self.receivedACK     = None
-        self.receivedResp    = None
+        self.receivedACK     = (None, None, None, None)
+        self.receivedResp    = (None, None, None, None)
         self.coapResponse    = None
         self.coapError       = None
         self.state           = self.STATE_INIT   # current state of the FSM

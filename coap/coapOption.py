@@ -129,8 +129,10 @@ class ContentFormat(coapOption):
 
 class Block2(coapOption):
     
-    def __init__(self,num=None,m=None,szx=None,rawbytes=[]):
-        
+    def __init__(self,num=None,m=None,szx=None,rawbytes=None):
+        if rawbytes is None:
+            rawbytes = []
+
         if rawbytes:
             assert num==None
             assert m==None
