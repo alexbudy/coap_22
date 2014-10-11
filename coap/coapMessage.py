@@ -29,7 +29,13 @@ def sortOptions(options):
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 '''
 
-def buildMessage(msgtype,token,code,messageId,options=[],payload=[]):
+def buildMessage(msgtype,token,code,messageId,options=None,payload=None):
+    if options is None:
+        options = []
+
+    if payload is None:
+        payload = []
+
     assert msgtype in d.TYPE_ALL
     assert code in d.METHOD_ALL+d.COAP_RC_ALL
     

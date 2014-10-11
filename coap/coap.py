@@ -58,7 +58,7 @@ class coap(object):
 
     #===== client
 
-    def GET(self,uri,confirmable=True,options=[]):
+    def GET(self,uri,confirmable=True,options=None):
         log.debug('GET {0}'.format(uri))
         response = self._transmit(
             uri         = uri,
@@ -69,7 +69,7 @@ class coap(object):
         log.debug('response: {0}'.format(response))
         return response['payload']
 
-    def PUT(self,uri,confirmable=True,options=[],payload=None):
+    def PUT(self,uri,confirmable=True,options=None,payload=None):
         response = self._transmit(
             uri         = uri,
             confirmable = confirmable,
@@ -80,7 +80,7 @@ class coap(object):
         log.debug('response: {0}'.format(response))
         return response['payload']
 
-    def POST(self,uri,confirmable=True,options=[],payload=None):
+    def POST(self,uri,confirmable=True,options=None,payload=None):
         response = self._transmit(
             uri         = uri,
             confirmable = confirmable,
@@ -91,7 +91,7 @@ class coap(object):
         log.debug('response: {0}'.format(response))
         return response['payload']
 
-    def DELETE(self,uri,confirmable=True,options=[]):
+    def DELETE(self,uri,confirmable=True,options=None):
         self._transmit(
             uri         = uri,
             confirmable = confirmable,
@@ -113,7 +113,13 @@ class coap(object):
 
     #===== transmit
 
-    def _transmit(self,uri,confirmable,code,options=[],payload=[]):
+    def _transmit(self,uri,confirmable,code,options=None,payload=None):
+        if options is None:
+            options = []
+
+        if payload is None:
+            payload = []
+
         assert code in d.METHOD_ALL
         if code in [d.METHOD_GET,d.METHOD_DELETE]:
             assert payload==[]
@@ -148,7 +154,7 @@ class coap(object):
 
     def _getMessageID(self,destIp,destPort):
         '''
-        \pre transmittersLock is already acquired.
+        pre transmittersLock is already acquired.
         '''
         with self.transmittersLock:
             self._cleanupTransmitter()
@@ -166,7 +172,7 @@ class coap(object):
 
     def _getToken(self,destIp,destPort):
         '''
-        \pre transmittersLock is already acquired.
+        pre transmittersLock is already acquired.
         '''
         with self.transmittersLock:
             self._cleanupTransmitter()
