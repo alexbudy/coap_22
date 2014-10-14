@@ -183,7 +183,7 @@ class Block2(coapOption):
 #============================ functions =======================================
 
 def parseOption(message,previousOptionNumber):
-    '''
+    r'''
     \brief Extract an option from the beginning of a message.
     
     \param[in] message              A list of bytes.

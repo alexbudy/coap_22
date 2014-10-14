@@ -16,7 +16,7 @@ import coapUtils     as u
 import coapMessage   as m
 
 class coapTransmitter(threading.Thread):
-    '''
+    r'''
     \brief A class which takes care of transmitting a CoAP message.
 
     It handles:
@@ -48,7 +48,7 @@ class coapTransmitter(threading.Thread):
     ]
 
     def __init__(self,sendFunc,srcIp,srcPort,destIp,destPort,confirmable,messageId,code,token,options,payload,ackTimeout,respTimeout):
-        '''
+        r'''
         \brief Initilizer function.
 
         This function initializes this instance by recording everything about
@@ -154,7 +154,7 @@ class coapTransmitter(threading.Thread):
     #======================== public ==========================================
 
     def transmit(self):
-        '''
+        r'''
         \brief Start the interaction with the destination, including waiting
             for transport-level ACK (if needed), waiting for an app-level
             response, and ACKing that (if needed)

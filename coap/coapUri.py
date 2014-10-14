@@ -14,7 +14,7 @@ import coapException as e
 import coapDefines   as d
 
 def uri2options(uri):
-    '''
+    r'''
     \brief Converts a coap URI into a list of CoAP options.
     
     Examples:
