@@ -233,9 +233,9 @@ class coap(object):
                 # find resource that matches this path
                 resource = None
                 with self.resourceLock:
-                    for r in self.resources:
-                        if r.matchesPath(path):
-                            resource = r
+                    for _r in self.resources:
+                        if _r.matchesPath(path):
+                            resource = _r
                             break
                 log.debug('resource={0}'.format(resource))
 
