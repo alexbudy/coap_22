@@ -420,12 +420,12 @@ class coapTransmitter(threading.Thread):
                     return
                 elif (
                         (
-                            message['type']==d.TYPE_CON or
-                            message['type']==d.TYPE_NON
+                            message['type']==d.TYPE_ACK or
+                            message['type']==d.TYPE_RST
                         ) and
                         message['token']==self.token
                     ):
-
+                    print "ASDFDS"
                     # store response
                     with self.dataLock:
                         self.receivedResp = (timestamp,srcIp,srcPort,message)
@@ -455,7 +455,7 @@ class coapTransmitter(threading.Thread):
         # decide whether to ACK response
         if   message['type']==d.TYPE_CON:
             self._setState(self.STATE_TXACK)
-        elif message['type']==d.TYPE_NON:
+        elif message['type']==d.TYPE_ACK:
             # successful end of FSM
             with self.dataLock:
                 self.coapResponse = message
