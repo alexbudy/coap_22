@@ -76,7 +76,7 @@ def uri2options(uri):
         # try formats:
         #    123.123.123.123:1234
         #    www.example.com:1234
-        m = re.match(r'([0-9a-zA-Z.-_]+):([0-9]+)',hostPort)
+        m = re.match(r'([0-9a-zA-Z.\-_]+):([0-9]+)',hostPort)
         if m:
             host   =     m.group(1)
             port   = int(m.group(2))
@@ -84,7 +84,7 @@ def uri2options(uri):
         # try formats:
         #    123.123.123.123
         #    www.example.com
-        m = re.match(r'([0-9a-zA-Z.-_]+)',hostPort)
+        m = re.match(r'([0-9a-zA-Z.\-_]+)',hostPort)
         if m:
             host   = m.group(1)
             port   = d.DEFAULT_UDP_PORT
